@@ -74,3 +74,27 @@ if (userDataLS) {
     inputEmail.setAttribute('readonly', true);
     inputPassword.setAttribute('readonly', true);
 }
+
+// Theme switcher
+
+const switcher = document.querySelector('.switcher-toggle');
+
+if (localStorage.getItem('theme') === 'dark') {
+	document.body.classList.add('dark')
+	document.body.classList.remove('light')
+	switcher.checked = true;
+}
+
+const onSwitcherChange = () => {
+	if (switcher.checked) {
+		document.body.classList.add('dark')
+		document.body.classList.remove('light')
+		localStorage.setItem('theme', 'dark');
+	} else {
+		document.body.classList.remove('dark')
+		document.body.classList.add('light')
+		localStorage.setItem('theme', 'light');
+	}
+}
+
+switcher.addEventListener('change', onSwitcherChange)
