@@ -25,4 +25,22 @@ formEl.addEventListener("submit", (event) => {
         alert("Дані не вірні")
         return;
     }
+    const userLocalStoreg = {
+        email: inputEmail.value,
+        password:inputPassword.value,
+}
+    localStorage.setItem('userData', JSON.stringify(userLocalStoreg));
+    buttonEl.textContent = 'Logout';
+    inputEmail.setAttribute('readonly', true);
+    inputPassword.setAttribute('readonly', true);
 })
+
+const userDataLS = localStorage.getItem('userData');
+if (userDataLS) {
+    const userDataParsed = JSON.parse(userDataLS);
+    inputEmail.value = userDataParsed.email;
+    inputPassword.value = userDataParsed.password;
+    buttonEl.textContent = 'Logout';
+    inputEmail.setAttribute('readonly', true);
+    inputPassword.setAttribute('readonly', true);
+}
